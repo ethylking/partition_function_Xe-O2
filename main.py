@@ -19,6 +19,8 @@ if __name__ == '__main__':
     S=S/N
     sterr=0
     for i in range(N):
+        if i % 100 == 0:
+            print(i)
         sterr+=(sigma[i]-S)**2
     sterr=sterr/(N*(N-1))
     S=S/(2*pi*h)**5*(1.6*10**(-31))**(5/2)
