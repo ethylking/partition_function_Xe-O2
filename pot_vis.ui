@@ -57,6 +57,9 @@
           </item>
           <item>
            <widget class="QDoubleSpinBox" name="r_spin">
+            <property name="decimals">
+             <number>4</number>
+            </property>
             <property name="minimum">
              <double>3.400000000000000</double>
             </property>

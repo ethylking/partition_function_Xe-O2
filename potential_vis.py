@@ -49,7 +49,7 @@ class Visualiser(QtWidgets.QMainWindow, Design):
         self.r = 3.87
         self.th = 0
         self.R = np.linspace(3.4, 10, 100)
-        self.Th = np.linspace(-1, 1, 181)
+        self.Th = np.linspace(-1, 1, 91)
         self.r_graph.plot(np.arccos(self.Th) / np.pi * 180,\
                                                      [float(V(self.r, theta)) for theta in self.Th], pen=(31, 119, 180))
         self.r_spin.valueChanged.connect(self.r_plot)

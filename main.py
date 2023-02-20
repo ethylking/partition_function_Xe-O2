@@ -2,7 +2,7 @@ from functions import *
 import time
 import os
 
-N=3*10**5
+N=1*10**6
 n=20 #threads number
 if __name__ == '__main__':
     T = 300 * 1.380649 * 10 ** (-16)

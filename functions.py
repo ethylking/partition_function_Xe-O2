@@ -25,6 +25,8 @@ def V30(r,th):
     return (V03(r)+V2(r)*P2(th)+V4(r)*P4(th))
 
 
+
+
 def SamplePoint(min,max):
     return (min**3+np.random.random()*(max**3-min**3))**(1/3)
 def SampleAngle(min,max):
@@ -39,7 +41,7 @@ def W(Prlim,PRlim,Rlim,thlim):
            pi*Prlim[1]**2*\
            4/3*pi*PRlim[1]**3
 
-def dihotomy(f,a,b,N=300):
+def dihotomy(f,a,b,N=1000):
     n=0
     while n!=N:
         n=n+1
@@ -66,8 +68,11 @@ def Zint(rmax):
         V=V30
     else:
         V=V20
-    thlim[1]=dihotomy(V(R,x),0,1)    #подбор пределов для th
-    thlim[0]=-thlim[1]
+    if R >= 3.857452:
+        thlim = [-1, 1]
+    else:
+        thlim[1]=dihotomy(V(R,x),0,1)    #подбор пределов для th
+        thlim[0]=-thlim[1]
     th=SampleAngle(thlim[0],thlim[1])   #самплинг th
     Prlim[1]=(2*muO2*(-V(R,th)))**0.5
     Pr=SamplePoint(Prlim[0],Prlim[1])
@@ -76,3 +81,26 @@ def Zint(rmax):
     fg=sympy.exp(-1/(T)*H(V,Pr,PR,R,th))
     wg=W(Prlim,PRlim,Rlim,thlim)
     return [fg,wg]
+
+# def V(r, th):
+#     if r / rm < x1:
+#         return V10(r, th)
+#     elif r / rm > x2:
+#         return V30(r, th)
+#     else:
+#         return V20(r, th)
+
+# import matplotlib.pyplot as plt
+# fig = plt.figure()
+# ax = fig.add_subplot(1, 1, 1)
+# R = np.linspace(3.4, 7, 100001)
+# pes = np.array([float(V(r, 1)) * 8.065 for r in R])
+
+
+# for i in range(len(R)):
+#     if pes[i] * pes[i+1] < 0:
+#         print(i, R[i], pes[i])
+#         print(i + 1, R[i+1], pes[i+1])
+#         break
+# ax.plot(R, pes)
+# plt.show()
